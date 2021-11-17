@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "DataTable.h"
+#include "DataBank.h"
 #include "BankAccount.h"
 
 
@@ -14,14 +14,14 @@ class Bank {
     private:
 
     vector<BankAccount> bankAccounts; // username as key
-    DataTable *table; // not dynamic memory
+    DataBank *table; // not dynamic memory
     int key; // key for the data table
 
     bool login(string username, string password);
 
     public:
 
-    Bank(DataTable *tab = nullptr, vector<BankAccount> accounts = {}); // only doing this because it is just the constructor
+    Bank(DataBank *tab = nullptr, vector<BankAccount> accounts = {}); // only doing this because it is just the constructor
 
     bool createUsername(string username, string pasword, unsigned int money);
 

@@ -12,7 +12,8 @@
 #include "cppconn/driver.h"
 #include "cppconn/exception.h"
 #include "cppconn/resultset.h"
-#include "cppconn/statement.h" // MySQL stuff
+#include "cppconn/statement.h"
+#include "cppconn/prepared_statement.h" // MySQL stuff
 
 using namespace sql::mysql;
 
@@ -21,11 +22,14 @@ class DataTable {
 
     MySQL_Driver *driver; // do not free
     std::unordered_map<int, sql::Connection *> connections; // free all of them
-    std::string table;
+
+    protected:
 
     int newConnection(sql::ConnectOptionsMap);
 
-    bool query(int key, std::string first, std::string& str);
+    bool simpleQuery(int key, std::string& str);
+
+    sql::ResultSet* query(int key, std::string& str);
 
     template<typename... Args>
     void converge(std::string &str, Args... arg) {
@@ -38,54 +42,17 @@ class DataTable {
         } else {
             str = b;
         }
-    }
+    } // converge (not going to be used, but nice to have)
 
     public:
 
-    DataTable(std::string tab = "BANK");
+    DataTable();
 
     ~DataTable();
 
     int newConnection();
 
     void disconnect(int& key);
-
-    bool insert(int key, std::string &);
-
-    template<typename... Args>
-    bool insert(int key, std::string &str, Args... arg) {
-        converge(str, arg);
-        if (str == "Invalid") {
-            return false;
-        }
-        return insert(key, str);
-    } // overloaded insert
-
-    bool deleteFunc(int key, std::string& str);
-
-    template<typename... Args>
-    bool deleteFunc(int key, std::string& str, Args... arg) {
-        converge(str, arg);
-        if (str == "Invalid") {
-            return false;
-        }
-        return deleteFunc(key, str);
-    } // overloaded deleteFunc
-
-    bool update(int key, std::string& str);
-
-    template<typename... Args>
-    bool update(int key, std::string& str, Args... arg) {
-        converge(str, arg);
-        if (str == "Invalid") {
-            return false;
-        }
-        return update(key, str);
-    } // overloaded update
-
-    std::string getTable();
-
-    void setTable(std::string newTable);
 };
 
 #endif
