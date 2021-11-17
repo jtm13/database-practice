@@ -1,0 +1,48 @@
+CREATE PROCEDURE new_account(AN INT, UN VARCHAR(18), P VARCHAR(18), M INT UNSIGNED)
+insert into bank 
+(accountnumber, username, pass, money)
+values (AN, UN, P, M);
+CREATE PROCEDURE update_Money(UN VARCHAR(18), M INT UNSIGNED, D INT UNSIGNED)
+UPDATE bank
+SET money=M,debt=D
+WHERE username=UN;
+CREATE PROCEDURE change_pass(UN VARCHAR(18), OP VARCHAR(18), NP VARCHAR(18))
+UPDATE bank
+SET pass=NP 
+WHERE username=UN AND pass=OP;
+CREATE PROCEDURE delete_account(UN VARCHAR(18), P VARCHAR(18))
+DELETE FROM bank
+WHERE username=UN AND pass=P;
+DELIMITER $$
+CREATE FUNCTION getMoney(UN VARCHAR(18), P VARCHAR(18))
+ RETURNS INT
+ READS SQL DATA
+ BEGIN
+ RETURN (SELECT money FROM bank WHERE username=UN AND pass=P);
+ END; $$
+DELIMITER $$
+CREATE FUNCTION getDebt(UN VARCHAR(18), P VARCHAR(18))
+ RETURNS INT
+ READS SQL DATA
+ BEGIN
+ RETURN (SELECT debt FROM bank WHERE username=UN AND pass=P);
+ END; $$ 
+DELIMITER $$
+DELIMITER $$
+CREATE FUNCTION getNet(UN VARCHAR(18), P VARCHAR(18))
+ RETURNS INT
+ READS SQL DATA
+ BEGIN
+ RETURN (SELECT net FROM bank WHERE username=UN AND pass=P);
+ END; $$ 
+DELIMITER $$
+# Returns 0 if credentials are not correct, 1 if it is
+CREATE FUNCTION check_login(UN VARCHAR(18), P VARCHAR(18))
+ RETURNS INT
+ READS SQL DATA
+ BEGIN
+ RETURN (SELECT COUNT(
+ CASE 
+ WHEN username=UN AND pass=P THEN userid END)
+ FROM bank);
+ END; $$
