@@ -39,7 +39,9 @@ int DataBank::checkLogin(int key, string username, string password) {
     sql::ResultSet* res = query(key, str);
     if (res != nullptr) {
         try {
-            return res->getInt(1);
+            int temp = res->getInt(1);
+            delete res;
+            return temp;
         } catch (sql::SQLException& e) {
             cout << "# ERR: SQLException in " << __FILE__ 
              << "(" << __FUNCTION__ << ") on line " 
@@ -58,7 +60,9 @@ int DataBank::getMoney(int key, string username, string password) {
     sql::ResultSet* res = query(key, str);
     if (res != nullptr) {
         try {
-            return res->getInt(1);
+            int temp = res->getInt(1);
+            delete res;
+            return temp;
         } catch (sql::SQLException& e) {
             cout << "# ERR: SQLException in " << __FILE__ 
              << "(" << __FUNCTION__ << ") on line " 
@@ -77,7 +81,9 @@ int DataBank::getDebt(int key, string username, string password) {
     sql::ResultSet* res = query(key, str);
     if (res != nullptr) {
         try {
-            return res->getInt(1);
+            int temp = res->getInt(1);
+            delete res;
+            return temp;
         } catch (sql::SQLException& e) {
             cout << "# ERR: SQLException in " << __FILE__ 
              << "(" << __FUNCTION__ << ") on line " 
@@ -96,7 +102,9 @@ int DataBank::getNet(int key, std::string username, string password) {
     sql::ResultSet* res = query(key, str);
     if (res != nullptr) {
         try {
-            return res->getInt(1);
+            int temp = res->getInt(1);
+            delete res;
+            return temp;
         } catch (sql::SQLException& e) {
             cout << "# ERR: SQLException in " << __FILE__ 
              << "(" << __FUNCTION__ << ") on line " 

@@ -1,25 +1,27 @@
 #ifndef BANKACCOUNT_H
 #define BANKACCOUNT_H
 
-#include "DataTable.h"
+#include "DataBank.h"
 
 class BankAccount {
     private:
 
-    int userId; // UserId
-    DataTable *table; // table connection
+    unsigned int money, debt; // money, debt of user
+    int key;
+    string username, password;
+    DataBank *table; // table connection
 
-    bool updateMoney(int realMoney);
+    bool updateMoney(unsigned int mon, unsigned int det);
 
     public:
 
-    BankAccount(int id, DataTable *tab = nullptr);
+    BankAccount(unsigned int mon, unsigned int det, int ky, string user, string pass, DataBank *tab = nullptr);
 
-    void setTable(DataTable tab);
+    void setTable(DataBank* tab);
 
-    bool withdraw(int minus);
+    bool withdraw(unsigned int minus);
 
-    bool deposit(int plus);
+    bool deposit(unsigned int plus);
 
     int checkBalance();
 }; // class BankAccount

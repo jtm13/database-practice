@@ -13,17 +13,17 @@ using namespace std;
 class Bank {
     private:
 
-    vector<BankAccount> bankAccounts; // username as key
+    vector<BankAccount*> bankAccounts; // username as key
     DataBank *table; // not dynamic memory
     int key; // key for the data table
 
-    bool login(string username, string password);
+    BankAccount* login(string username, string password);
 
     public:
 
-    Bank(DataBank *tab = nullptr, vector<BankAccount> accounts = {}); // only doing this because it is just the constructor
+    Bank(DataBank *tab = nullptr, vector<BankAccount*> accounts = {}); // only doing this because it is just the constructor
 
-    bool createUsername(string username, string pasword, unsigned int money);
+    BankAccount* createUsername(string username, string pasword, unsigned int money);
 
     bool deleteUsername(string username, string password);
 };
