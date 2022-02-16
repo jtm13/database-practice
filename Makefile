@@ -1,36 +1,35 @@
-CC = g++
-CFLAGS = -g -Wall -I/c/Program\ Files/MySQL/Connector\ C++\ 8.0/include/jdbc
-VPATH = src:bin
-OBJ = bin/obj/
-LINK = -L/c/Program\ Files/MySQL/Connector\ C++\ 8.0/lib64/vs14/mysqlcppconn.lib
+DIR = /c/xampp/htdocs/mine/bank/
 
-#-Wall -Wextra
-#-Werror -std=gnu99
+all: 	calendar merchPage listOfBrothers
 
-all: main
+calendar : events normalize defined
+	cp calendar.php $(DIR)
+	cp calendar.css $(DIR)
 
-main: $(OBJ)DataTable.o $(OBJ)Bank.o $(OBJ)main.o $(LINK)
-	$(CC) $(CFLAGS) -o bin/main $^ 
+merchPage: merchandise normalize defined
+	cp merchPage.php $(DIR)
 
-%: %.c bin.txt
-	$(CC) $(CFLAGS) -o bin/$@ $<
+listOfBrothers: brothers normalize defined
+	cp listOfBrothers.php $(DIR)
 
-$(OBJ)%.o: %.cpp $(OBJ)obj.txt
-	$(CC) $(CFLAGS) -c -o $@ $<
+events: container
+	cp events.php $(DIR)
 
-$(OBJ)obj.txt:
-	mkdir -p $(OBJ)
-	echo "Check." >> $(OBJ)obj.txt
-	echo "Check." >> bin/bin.txt
+merchandise: container
+	cp merchandise.php $(DIR)
 
-bin.txt:
-	mkdir bin
-	echo "Check." >> bin/bin.txt
+brothers: container
+	cp brothers.php $(DIR)
+
+normalize:
+	cp normalize.css $(DIR)
+
+defined: 
+	cp defined.php $(DIR)
+
+container:
+	cp container.php $(DIR)
 
 clean:
-	rm -rf bin/obj/*
-	rm -rf *.dSYM
-	rm -rf *.class
-	rm bin/main*
-	rm main*
-	rm *.o
+	rm -f $(DIR)*.php
+	rm -f $(DIR)*.css
