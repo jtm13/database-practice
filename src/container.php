@@ -1,4 +1,4 @@
-<?php 
+<?php
 define("NO_PICTURE", "placeholder");
 abstract class Container {
     private $ar;
