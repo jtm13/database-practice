@@ -1,34 +1,28 @@
 DIR = /c/xampp/htdocs/mine/bank/
+SRC = src/
 
-all: 	calendar merchPage listOfBrothers
+all: 	bank_account
 
-calendar : events normalize defined
-	cp calendar.php $(DIR)
-	cp calendar.css $(DIR)
+bankAccount : container normalize
+	cp $(SRC)bankAccount.php $(DIR)
 
-merchPage: merchandise normalize defined
-	cp merchPage.php $(DIR)
-
-listOfBrothers: brothers normalize defined
-	cp listOfBrothers.php $(DIR)
-
-events: container
-	cp events.php $(DIR)
-
-merchandise: container
-	cp merchandise.php $(DIR)
-
-brothers: container
-	cp brothers.php $(DIR)
-
-normalize:
-	cp normalize.css $(DIR)
-
-defined: 
-	cp defined.php $(DIR)
+main: bankAccount defined
+	cp $(SRC)main.php $(DIR)
 
 container:
-	cp container.php $(DIR)
+	cp $(SRC)container.php $(DIR)
+
+bank_account: main favicon
+	cp $(SRC)bank_account.html $(DIR)
+
+favicon:
+	cp img/favicon.svg $(DIR)img/
+
+normalize:
+	cp $(SRC)normalize.css $(DIR)
+
+defined: 
+	cp $(SRC)private/defined.php $(DIR)private/
 
 clean:
 	rm -f $(DIR)*.php
