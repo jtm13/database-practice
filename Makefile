@@ -1,7 +1,10 @@
 DIR = /c/xampp/htdocs/mine/bank/
 SRC = src/
 
-all: 	bank_account
+all: 	login bank_account
+
+login:
+	cp $(SRC)login.html $(DIR)
 
 bankAccount : container normalize
 	cp $(SRC)bankAccount.php $(DIR)
@@ -13,7 +16,7 @@ container:
 	cp $(SRC)container.php $(DIR)
 
 bank_account: main favicon
-	cp $(SRC)bank_account.html $(DIR)
+	cp $(SRC)bank_account.php $(DIR)
 
 favicon:
 	cp img/favicon.svg $(DIR)img/

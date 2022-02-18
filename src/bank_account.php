@@ -10,7 +10,12 @@
         <nav>
             Bank of Justin
         </nav>
-        <iframe src="main.php" name="userInfo" scrolling="no"></iframe>
+        <?php
+        session_start();
+        $_SESSION["User"] = $_POST["user"];
+        $_SESSION["Pass"] = $_POST["pass"];
+        include("main.php");
+        ?>
         <footer id="foot">
             <p>&#169 BANK OF JUSTIN COPYRIGHT 2022</p>
         </footer>
