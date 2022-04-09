@@ -1,0 +1,81 @@
+* {
+    font-family: 'Open Sans';
+    font-style: normal;
+}
+
+body {
+    background-color: #FEFEFE;
+    margin: 0px;
+}
+
+/* Header */
+header#global-head {
+    height: 7.6419%;
+    background: #0d1378;
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    /*position: absolute;
+    bottom: 0%; this did not work exactly*/
+    /* height: 9.607%; */
+    width: 100%;
+    background: #0d1378;
+}
+
+/* Copyright */
+#copyright {
+    height: 40px;
+    /*left: 12px;
+    top: 419px;*/
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ffffff;
+}
+
+.nav-buttons {
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+align-items: center;
+text-align: center;
+text-decoration: none;
+
+color: #FFFFFF;
+}
+
+button.nav-buttons:not(hover) {
+    transition: 300ms;
+    background-color: #0d1378;
+    color:#ffffff;
+}
+
+button.nav-buttons:hover {
+    transition: 300ms;
+    background-color: #0077ff;
+    color:#000000;
+}
+
+/* PMU Logo */
+.logo {
+    width: 162.31px;
+    height: 33px;
+}
+
+nav {
+    display: block;
+}
+
+ul.nav-list-container {
+    list-style-type: none;
+    margin: 0px;
+    padding: 2px;
+}
+
+li.nav-list {
+    display: inline;
+}

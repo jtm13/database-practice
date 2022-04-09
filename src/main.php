@@ -27,6 +27,7 @@
     Try again in a few hours.</p>" /*. $e->getMessage()*/;
  }
  if (!$conn) {
-     echo "<p>You do not have an account with us.</p>";
+    header("Location: login.html", true);
+    exit();
  }
 ?>

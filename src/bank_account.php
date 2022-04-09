@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 
+<?php
+if (!in_array("user", array_keys($_POST)) || !in_array("pass", array_keys($_POST))) {
+    header("Location: login.php");
+    exit();
+}
+session_start();
+$_SESSION["User"] = $_POST["user"];
+$_SESSION["Pass"] = $_POST["pass"];
+require_once("template.php");
+?>
+
 <html lang="en-US">
     <head>
-        <title>Bank of Justin</title>
-        <link rel="stylesheet" type="text/css" href="normalize.css">
-        <link rel="icon" type="image/x-icon" href="img/favicon.svg">
+        <title>Bank Account</title>
+        <?php headInfo("$_SESSION[User]'s Account", "Profile", []); ?>
     </head>
     <body>
-        <nav>
-            Bank of Justin
-        </nav>
-        <?php
-        session_start();
-        $_SESSION["User"] = $_POST["user"];
-        $_SESSION["Pass"] = $_POST["pass"];
+        <?php 
+        head();
         include("main.php");
+        foot();
         ?>
-        <footer id="foot">
-            <p>&#169 BANK OF JUSTIN COPYRIGHT 2022</p>
-        </footer>
     </body>
 </html>
