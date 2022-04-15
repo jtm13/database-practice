@@ -1,17 +1,19 @@
 <?php
 
-function head(): void {
-    echo '<header id="global-head">
-            <nav>
-                <ul class="nav-list-container">
+function head(bool $logged_in = true): void {
+    $str = ($logged_in) ? '<ul class="nav-list-container">
                     <!--The format is very important to enure there are no spaces between items-->
                     <li class="nav-list"><button onClick="deposit()" class="nav-buttons"> Deposit </a></li
                     ><li class="nav-list"><button onClick="withdraw()" class="nav-buttons"> Withdraw </a></li
                     ><li class="nav-list"><button onClick="loan()" class="nav-buttons"> Loans </a></li
                     ><li class="nav-list"><button onClick="payBack()" class="nav-buttons"> Payback Loans </a></li
                     ><li class="nav-list"><button onClick="signOut()" class="nav-buttons"> SignOut </a></li>
-                </ul>
-            </nav>
+                </ul>' : '';
+    echo '<header id="global-head">
+            <nav id="global-navigation">
+                <span id="global-name">Bank of Justin</span>'
+                . $str .
+            '</nav>
         </header>';
 }
 

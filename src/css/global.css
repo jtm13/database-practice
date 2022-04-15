@@ -19,9 +19,8 @@ header#global-head {
 
 /* Footer */
 footer {
-    /*position: absolute;
-    bottom: 0%; this did not work exactly*/
-    /* height: 9.607%; */
+    position: fixed;
+    bottom: 0%;
     width: 100%;
     background: #0d1378;
 }
@@ -78,4 +77,18 @@ ul.nav-list-container {
 
 li.nav-list {
     display: inline;
+}
+
+nav#global-navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+span#global-name {
+    color: #FFFFFF;
 }

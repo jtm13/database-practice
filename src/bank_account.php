@@ -14,7 +14,7 @@ require_once("template.php");
 <html lang="en-US">
     <head>
         <title>Bank Account</title>
-        <?php headInfo("$_SESSION[User]'s Account", "Profile", []); ?>
+        <?php headInfo("$_SESSION[User]'s Account", "Profile", ["bank_account"]); ?>
     </head>
     <body>
         <?php 
